@@ -1,2 +1,8 @@
 rootProject.name = 'SelenideTest'
+buildCache {
+    local {
+        directory = new File(rootDir, 'build-cache')
+        removeUnusedEntriesAfterDays = 1
+    }
+}
 

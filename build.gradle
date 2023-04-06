@@ -6,10 +6,10 @@ group = 'ru.egor.qa.selenidetest'
 version = '1.0-SNAPSHOT'
 
 def selenideVersion = '6.12.4'
-def junitJupiterVersion = '5.9.1'
+def junitJupiterVersion = '5.9.2'
 def cucumberJavaVersion = '7.11.2'
 def cucumberJunitVersion = '7.11.2'
-
+def allureSelenideVersion = '2.20.1'
 
 
 repositories {
@@ -24,11 +24,16 @@ compileTestJava {
 
 dependencies {
     testImplementation "com.codeborne:selenide:${selenideVersion}"
-    testImplementation "org.junit.jupiter:junit-jupiter:${junitJupiterVersion}"
+    testImplementation "org.junit.jupiter:junit-jupiter-api:${junitJupiterVersion}"
+    testImplementation "org.junit.jupiter:junit-jupiter-engine:${junitJupiterVersion}"
     testImplementation "io.cucumber:cucumber-java:${cucumberJavaVersion}"
     testImplementation "io.cucumber:cucumber-junit:${cucumberJunitVersion}"
-}
+    implementation  "io.qameta.allure:allure-selenide:${allureSelenideVersion}"
 
+}
+tasks.withType(Test) {
+    useJUnitPlatform()
+}
 test {
     useJUnitPlatform()
 }

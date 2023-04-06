@@ -8,7 +8,7 @@ import org.junit.runner.RunWith;
 @CucumberOptions(
         glue = {"ru.egor.qa.selenidetest.steps"},
         features = {"src/test/resources/feature"},
-        tags = "@klavagonki"
+        tags = "@Test"
 )
 public class RunnerProjectTest {
 }
