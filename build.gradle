@@ -1,0 +1,34 @@
+plugins {
+    id 'java'
+}
+
+group = 'ru.egor.qa.selenidetest'
+version = '1.0-SNAPSHOT'
+
+def selenideVersion = '6.12.4'
+def junitJupiterVersion = '5.9.1'
+def cucumberJavaVersion = '7.11.2'
+def cucumberJunitVersion = '7.11.2'
+
+
+
+repositories {
+    mavenCentral()
+}
+compileJava {
+    options.encoding = 'UTF-8'
+}
+compileTestJava {
+    options.encoding = 'UTF-8'
+}
+
+dependencies {
+    testImplementation "com.codeborne:selenide:${selenideVersion}"
+    testImplementation "org.junit.jupiter:junit-jupiter:${junitJupiterVersion}"
+    testImplementation "io.cucumber:cucumber-java:${cucumberJavaVersion}"
+    testImplementation "io.cucumber:cucumber-junit:${cucumberJunitVersion}"
+}
+
+test {
+    useJUnitPlatform()
+}
