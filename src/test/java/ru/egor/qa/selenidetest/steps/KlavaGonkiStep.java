@@ -7,8 +7,6 @@ import org.junit.jupiter.api.Assertions;
 import org.openqa.selenium.Keys;
 import ru.egor.qa.selenidetest.elements.KlavaGonkiPageElements;
 
-import static com.codeborne.selenide.Selenide.$;
-
 public class KlavaGonkiStep extends KlavaGonkiPageElements {
 
 

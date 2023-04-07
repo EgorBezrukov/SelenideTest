@@ -7,8 +7,8 @@ version = '1.0-SNAPSHOT'
 
 def selenideVersion = '6.12.4'
 def junitJupiterVersion = '5.9.2'
-def cucumberJavaVersion = '7.11.2'
-def cucumberJunitVersion = '7.11.2'
+def cucumberJavaVersion = '7.11.0'
+def cucumberJunitVersion = '7.11.0'
 def allureSelenideVersion = '2.20.1'
 
 
