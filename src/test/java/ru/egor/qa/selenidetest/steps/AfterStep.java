@@ -9,8 +9,9 @@ public class AfterStep {
     /*закрытие WebDriver*/
     @After
     public void tearDown(){
-        WebDriverRunner.getWebDriver().quit();
         WebDriverRunner.getWebDriver().close();
+        WebDriverRunner.getWebDriver().quit();
+
     }
     /*Создание скриншота после каждого шага*/
     @io.cucumber.java.AfterStep

@@ -1,25 +1,21 @@
 package ru.egor.qa.selenidetest.steps;
 
-import com.codeborne.selenide.SelenideElement;
 import io.cucumber.java.ru.И;
 import io.cucumber.java.ru.Когда;
 import io.cucumber.java.ru.Тогда;
 import org.junit.jupiter.api.Assertions;
 import org.openqa.selenium.Keys;
+import ru.egor.qa.selenidetest.elements.KlavaGonkiPageElements;
 
-import static com.codeborne.selenide.Selenide.$x;
+import static com.codeborne.selenide.Selenide.$;
 
-public class KlavaGonkiStep {
-    private final SelenideElement closeWindowButton = $x("//input[@value'Закрыть'");
-    private final SelenideElement startGameButton = $x("//a[@id='host_start']");
-    private final SelenideElement highlightWord = $x(" //span[@id='typefocus']");
-    private final SelenideElement inputField = $x(" //input[@id='inputtext']");
-    private final SelenideElement afterFocusWord = $x(" //span[@id='afterfocus']");
-    private final SelenideElement resultText = $x(" //span[@id='afterfocus']");
+public class KlavaGonkiStep extends KlavaGonkiPageElements {
 
-    private String getCurrentWord(){
-        return highlightWord.getText().replaceAll("с", "c").replaceAll("о", "o");
+
+    private String getCurrentWord() {
+        return highlightWord.getText().replaceAll("c", "с").replaceAll("o", "о");
     }
+
     @Когда("начинаем игру")
     public void startGame() {
         closeWindowButton.click();
@@ -35,11 +31,11 @@ public class KlavaGonkiStep {
 
     @И("вводим подсвеченное слово в цикле")
     public void playGame() {
-        while (true){
+        while (true) {
             String currentWord = getCurrentWord();
             String afterFocusSymbol = afterFocusWord.getText();
             inputField.sendKeys(currentWord);
-            if (afterFocusSymbol.equals(".")){
+            if (afterFocusSymbol.equals(".")) {
                 inputField.sendKeys(".");
                 break;
             }
@@ -52,6 +48,23 @@ public class KlavaGonkiStep {
         String result = resultText.getText();
         int resulNumber = Integer.parseInt(result);
         System.out.println("Колличесво знаков в минуту " + resulNumber);
-        Assertions.assertTrue(resulNumber>minValue, "Актуальный результат = " + resulNumber);
+        Assertions.assertTrue(resulNumber > minValue, "Актуальный результат = " + resulNumber);
+    }
+
+    @Когда("бот выполняет вход")
+    public void inputLogin() {
+        enterPage.click();
+        login.setValue("Ssnail_");
+        password.setValue("Abrakadabra1-").pressEnter();
+
+
+    }
+
+    @Тогда("Запускается быстрая игра")
+    public void fastGameStart() {
+        fastGameButton.click();
+        if (startGameButton.isDisplayed()) {
+            startGameButton.click();
+        }
     }
 }

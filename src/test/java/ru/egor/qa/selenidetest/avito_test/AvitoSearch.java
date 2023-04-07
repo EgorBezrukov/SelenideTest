@@ -1,8 +1,6 @@
 package ru.egor.qa.selenidetest.avito_test;
 
-import com.codeborne.selenide.CollectionCondition;
 import com.codeborne.selenide.ElementsCollection;
-import com.codeborne.selenide.SelenideElement;
 import org.junit.jupiter.api.Test;
 import ru.egor.qa.selenidetest.functions.BaseSelenideTest;
 
