@@ -11,7 +11,7 @@ public class KlavaGonkiPageElements {
     protected final SelenideElement highlightWord = $x(" //span[@id='typefocus']");
     protected final SelenideElement inputField = $x(" //input[@id='inputtext']");
     protected final SelenideElement afterFocusWord = $x(" //span[@id='afterfocus']");
-    protected final SelenideElement resultText = $x(" //span[@id='afterfocus']");
+    protected final SelenideElement resultText = $x("//span[contains(text(), 'зн/мин')]/..//span//span");
     protected final SelenideElement enterPage = $x("//span[text() = 'Вход']");
 
     protected final SelenideElement login = $("#username");
