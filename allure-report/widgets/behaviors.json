@@ -1,0 +1,1 @@
+{"total":2,"items":[{"uid":"9fc4f759080a6c437fa02f5893b011e4","name":"Выполнение покупки  на сайте https://www.saucedemo.com/","statistic":{"failed":0,"broken":0,"skipped":0,"passed":1,"unknown":0,"total":1}},{"uid":"acd378bafca58e99c24076bfd7fd76b4","name":"Проверка функционала формы регистрации","statistic":{"failed":0,"broken":0,"skipped":0,"passed":1,"unknown":0,"total":1}}]}

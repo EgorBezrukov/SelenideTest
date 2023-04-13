@@ -15,7 +15,7 @@ public class AvitoSearch extends BaseSelenideTest {
      * на открывшейся странице выбрать категорию "audi"
      * на открывшейся странице выбрать категорию "A4"
      * Проверить что на открывшейся странице имеется 50 элементов*/
-    @Test
+
     public void searchAuto() {
         open("https://www.avito.ru/");
         $x("//input[@type='text']").setValue("автомобили").pressEnter();

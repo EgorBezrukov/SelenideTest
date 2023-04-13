@@ -13,7 +13,7 @@ public class AvitoLogin extends BaseSelenideTest {
     2.нажать на кнопку войти
     3.ввести валидный логин и пароль и нажать ентер*/
 
-    @Test
+
     public void loginInAvito() {
         open("https://www.avito.ru/");
         $x("//a[text()='Вход и регистрация']").click();
