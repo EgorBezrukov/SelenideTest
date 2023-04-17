@@ -4,11 +4,8 @@ import com.codeborne.selenide.WebDriverRunner;
 import io.cucumber.java.ru.И;
 import io.cucumber.java.ru.Когда;
 import io.cucumber.java.ru.Тогда;
-import io.restassured.RestAssured;
-import io.restassured.http.ContentType;
 import org.junit.jupiter.api.Assertions;
 import org.openqa.selenium.Keys;
-import org.openqa.selenium.WebDriver;
 import ru.egor.qa.selenidetest.elements.KlavaGonkiPageElements;
 
 public class KlavaGonkiStep extends KlavaGonkiPageElements {
@@ -58,12 +55,12 @@ public class KlavaGonkiStep extends KlavaGonkiPageElements {
         String xsrfToken = WebDriverRunner.getWebDriver().manage().getCookieNamed("XSRF-TOKEN").getValue();
     }
 
-    @И("^(?:пользователь|он)? отправляет http запрос \"([^\"]*)\"$")
-    public void sendRequest() {
-        RestAssured.given()
-                .contentType(ContentType.MULTIPART)
-                .cookie("XSRF-TOKEN", "sadfgd");
-    }
+//    @И("^(?:пользователь|он)? отправляет http запрос \"([^\"]*)\"$")
+//    public void sendRequest() {
+//        RestAssured.given()
+//                .contentType(ContentType.MULTIPART)
+//                .cookie("XSRF-TOKEN", "sadfgd");
+//    }
 
     @Когда("бот выполняет вход")
     public void inputLogin() {

@@ -12,7 +12,7 @@ import org.junit.runner.RunWith;
         },
         glue = {"ru.egor.qa.selenidetest.steps"},
         features = {"src/test/resources/feature"},
-        tags = "@CheckStatusCode200"
+        tags = "@CheckProductPage"
 )
 public class RunnerProjectTest {
 }

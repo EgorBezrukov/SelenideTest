@@ -8,8 +8,6 @@ import ru.egor.qa.selenidetest.elements.SwagLabsPageElements;
 
 import static com.codeborne.selenide.CollectionCondition.sizeGreaterThan;
 import static com.codeborne.selenide.CollectionCondition.sizeGreaterThanOrEqual;
-import static java.util.Collections.reverseOrder;
-import static java.util.Collections.sort;
 
 public class SwagLabsStep extends SwagLabsPageElements {
     private SwagLabsPageElements productsPage = new SwagLabsPageElements();
