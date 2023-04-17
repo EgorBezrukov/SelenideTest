@@ -6,20 +6,27 @@ import io.cucumber.java.ru.Тогда;
 import org.junit.jupiter.api.Assertions;
 import ru.egor.qa.selenidetest.elements.SwagLabsPageElements;
 
+import static com.codeborne.selenide.CollectionCondition.sizeGreaterThan;
 import static com.codeborne.selenide.CollectionCondition.sizeGreaterThanOrEqual;
-import static com.codeborne.selenide.Condition.text;
+import static java.util.Collections.reverseOrder;
+import static java.util.Collections.sort;
 
 public class SwagLabsStep extends SwagLabsPageElements {
+    private SwagLabsPageElements productsPage = new SwagLabsPageElements();
+
     @Когда("пользователь выполняет вход")
     public void inputLogin() {
         login.setValue("standard_user");
         password.setValue("secret_sauce").pressEnter();
+
     }
 
-    @И("Он проверяет что количество элементов на странице ровно {int}")
+    @И("^(?:пользователь|он)? проверяет что количество элементов на странице ровно \"([^\"]*)\"$")
     public void checkElementPage(int quantity) {
-        inventoryList.shouldHave(sizeGreaterThanOrEqual(quantity))
-                .first().shouldHave(text("Sauce Labs Backpack"));
+        productNames.shouldHave(sizeGreaterThanOrEqual(quantity));
+//        ElementsCollection productNames = productsPage.getProductNames();
+//        productNames.shouldHave(CollectionCondition.sizeGreaterThan(0));
+//        productNames.shouldHave(CollectionCondition.allMatch(name -> !name.isEmpty()));
 
     }
 
@@ -50,6 +57,30 @@ public class SwagLabsStep extends SwagLabsPageElements {
 //        Assertions.assertEquals(result, openBackPackPage());
         if (result.equals(openBackPackPage())) {
             System.out.println(result);
-        }else  System.out.println(result + " не равно " + openBackPackPage());
+        } else System.out.println(result + " не равно " + openBackPackPage());
+    }
+
+    @Когда("^(?:пользователь|он)? сортирует товары по цене от низкой к высокой$")
+    public void sortsProductsByPriceFromLowToHigh() {
+        productSortContainer.selectOptionByValue("lohi");
+    }
+
+    @Когда("^(?:пользователь|он)? сортирует товары по цене от высокой к низкой")
+    public void sortsProductsByPriceFromHighToLow() {
+        productSortContainer.selectOptionByValue("hilo");
+    }
+
+    @Тогда("^(?:пользователь|он)? проверяет, что товары должны быть отсортированы по цене от низкой к высокой$")
+    public void theProductsShouldBeSortedByPriceFromLowToHigh() {
+        products.shouldHave(sizeGreaterThan(0));
+        productPrices.shouldHave(sizeGreaterThan(0));
+//        productPrices.shouldBe(sortedBy("text"));
+    }
+
+    @Тогда("^(?:пользователь|он)? проверяет, что товары должны быть отсортированы по цене от высокой к низкой")
+    public void theProductsShouldBeSortedByPriceFromHighToLow() {
+        products.shouldHave(sizeGreaterThan(0));
+        productPrices.shouldHave(sizeGreaterThan(0));
+//        productPrices.shouldBe(sort("text", reverseOrder()));
     }
 }

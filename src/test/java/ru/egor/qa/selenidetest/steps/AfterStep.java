@@ -14,6 +14,7 @@ public class AfterStep {
 
     }
     /*Создание скриншота после каждого шага*/
+    @After
     @io.cucumber.java.AfterStep
     public void makeScreenshot(){
         Selenide.screenshot(System.currentTimeMillis() + "step");

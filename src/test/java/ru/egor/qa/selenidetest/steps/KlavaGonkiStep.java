@@ -1,10 +1,14 @@
 package ru.egor.qa.selenidetest.steps;
 
+import com.codeborne.selenide.WebDriverRunner;
 import io.cucumber.java.ru.И;
 import io.cucumber.java.ru.Когда;
 import io.cucumber.java.ru.Тогда;
+import io.restassured.RestAssured;
+import io.restassured.http.ContentType;
 import org.junit.jupiter.api.Assertions;
 import org.openqa.selenium.Keys;
+import org.openqa.selenium.WebDriver;
 import ru.egor.qa.selenidetest.elements.KlavaGonkiPageElements;
 
 public class KlavaGonkiStep extends KlavaGonkiPageElements {
@@ -14,7 +18,7 @@ public class KlavaGonkiStep extends KlavaGonkiPageElements {
         return highlightWord.getText().replaceAll("c", "с").replaceAll("o", "о");
     }
 
-    @Когда("начинаем игру")
+    @Когда("^(?:пользователь|он)? начинает игру$")
     public void startGame() {
         closeWindowButton.click();
         if (startGameButton.isDisplayed()) {
@@ -22,12 +26,12 @@ public class KlavaGonkiStep extends KlavaGonkiPageElements {
         }
     }
 
-    @И("ждем начала игры")
+    @И("^(?:пользователь|он)? ждет начала игры$")
     public void waiForStartGame() {
         highlightWord.click();
     }
 
-    @И("вводим подсвеченное слово в цикле")
+    @И("^(?:пользователь|он)? вводит подсвеченное слово в цикле$")
     public void playGame() {
         while (true) {
             String currentWord = getCurrentWord();
@@ -41,12 +45,24 @@ public class KlavaGonkiStep extends KlavaGonkiPageElements {
         }
     }
 
-    @Тогда("фиксируем что игра завершена и символов в минуту больше чем {int}")
+    @Тогда("^(?:пользователь|он)? фиксирует, что игра завершена и символов в минуту больше чем \"([^\"]*)\"$")
     public void endGame(int minValue) {
         String result = resultText.getText();
         int resulNumber = Integer.parseInt(result);
         System.out.println("Колличесво знаков в минуту " + resulNumber);
         Assertions.assertTrue(resulNumber > minValue, "Актуальный результат = " + resulNumber);
+    }
+
+    @И("^(?:пользователь|он)? получает куки по названию$")
+    public void getCookies() {
+        String xsrfToken = WebDriverRunner.getWebDriver().manage().getCookieNamed("XSRF-TOKEN").getValue();
+    }
+
+    @И("^(?:пользователь|он)? отправляет http запрос \"([^\"]*)\"$")
+    public void sendRequest() {
+        RestAssured.given()
+                .contentType(ContentType.MULTIPART)
+                .cookie("XSRF-TOKEN", "sadfgd");
     }
 
     @Когда("бот выполняет вход")
