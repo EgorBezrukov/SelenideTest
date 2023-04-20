@@ -25,4 +25,59 @@ public class SwagLabsPageElements {
     protected final SelenideElement productSortContainer = $("select.product_sort_container");
 
 
+    public SelenideElement getLogin() {
+        return login;
+    }
+
+    public SelenideElement getPassword() {
+        return password;
+    }
+
+    public ElementsCollection getInventoryList() {
+        return inventoryList;
+    }
+
+    public SelenideElement getBackPackOpenPage() {
+        return backPackOpenPage;
+    }
+
+    public SelenideElement getBackPackPrice() {
+        return backPackPrice;
+    }
+
+    public SelenideElement getAddToCartButton() {
+        return addToCartButton;
+    }
+
+    public SelenideElement getCartBadge() {
+        return cartBadge;
+    }
+
+    public SelenideElement getCartButton() {
+        return cartButton;
+    }
+
+    public SelenideElement getItemPrise() {
+        return itemPrise;
+    }
+
+    public SelenideElement getErrorMessage() {
+        return errorMessage;
+    }
+
+    public ElementsCollection getProductNames() {
+        return productNames;
+    }
+
+    public ElementsCollection getProducts() {
+        return products;
+    }
+
+    public ElementsCollection getProductPrices() {
+        return productPrices;
+    }
+
+    public SelenideElement getProductSortContainer() {
+        return productSortContainer;
+    }
 }

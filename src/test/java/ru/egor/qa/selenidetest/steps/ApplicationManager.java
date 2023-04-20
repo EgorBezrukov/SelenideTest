@@ -5,12 +5,14 @@ import com.codeborne.selenide.Selenide;
 import com.codeborne.selenide.WebDriverRunner;
 import org.junit.jupiter.api.Assertions;
 import org.openqa.selenium.By;
+import ru.egor.qa.selenidetest.elements.SwagLabsPageElements;
 
 import static com.codeborne.selenide.CollectionCondition.sizeGreaterThanOrEqual;
 import static com.codeborne.selenide.Selenide.$;
-import static com.codeborne.selenide.Selenide.$$;
 
 public class ApplicationManager {
+    private final SwagLabsPageElements sw = new SwagLabsPageElements();
+
     protected static void enterLoginAndPassword(String fieldName, String fieldValue) {
         String name;
         if (fieldName.equals("Логин")) name = "user-name";
@@ -35,32 +37,30 @@ public class ApplicationManager {
     }
 
     protected void checkErrorMassage(String massage) {
-        String res = $("[data-test=error]").getText();
+        String res = sw.getErrorMessage().getText();
         Assertions.assertEquals(res, massage);
     }
 
     protected void checkQuantityPageElements(int quantity) {
-        $$(".inventory_item_name").shouldHave(sizeGreaterThanOrEqual(quantity));
+        sw.getProductNames().shouldHave(sizeGreaterThanOrEqual(quantity));
     }
 
     protected String openBackPackAndRememberPrice() {
-        $("#item_4_title_link").click();
-        String price = $(".inventory_details_price").getText();
+       final String price = sw.getBackPackPrice().getText();
         return price;
     }
 
     protected void addToShoppingCartAndAssert(int quantity) {
-        $("#add-to-cart-sauce-labs-backpack").click();
-        String result = $(".shopping_cart_badge").getText();
+        String result = sw.getCartBadge().getText();
         Integer res = Integer.parseInt(result);
         Assertions.assertEquals(quantity, res);
     }
 
     protected void sortByPriceLowHigh() {
-        $("select.product_sort_container").selectOptionByValue("lohi");
+        sw.getProductSortContainer().selectOptionByValue("lohi");
     }
 
     protected void sortByPriceHighLow() {
-        $("select.product_sort_container").selectOptionByValue("hilo");
+        sw.getProductSortContainer().selectOptionByValue("hilo");
     }
 }

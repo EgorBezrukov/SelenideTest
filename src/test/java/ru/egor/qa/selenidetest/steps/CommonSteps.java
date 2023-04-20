@@ -9,22 +9,19 @@ public class CommonSteps {
 
     @И("^(?:пользователь|он)? вводит в поле \"([^\"]*)\" знчение \"([^\"]*)\"$")
     public void input(String fieldName, String fieldValue) {
-        ApplicationManager.enterLoginAndPassword(fieldName, fieldValue);
+        app.enterLoginAndPassword(fieldName, fieldValue);
     }
 
     @И("^(?:пользователь|он)? нажимает на \"([^\"]*)\"$")
     public void clickButton(String btnName) {
-        ApplicationManager.button(btnName);
+        app.button(btnName);
     }
 
     @Тогда("^(?:пользователь|он)? проверяет что адрес сайта равен \"([^\"]*)\"$")
     public void checkUrl(String currentUrl) {
-        ApplicationManager.getUrlAndCheck(currentUrl);
+        app.getUrlAndCheck(currentUrl);
     }
 
-    @Тогда("^(?:пользователь|он)? проверяет, что отображается сообщение об ошибке \"([^\"]*)\"$")
-    public void checkError(String massage) {
-        app.checkErrorMassage(massage);
-    }
+
 
 }

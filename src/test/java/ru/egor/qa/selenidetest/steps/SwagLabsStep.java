@@ -20,7 +20,7 @@ public class SwagLabsStep {
         return app.openBackPackAndRememberPrice();
     }
 
-    @И("^(?:пользователь|он)? добавляет товар в корзину и проверяет что в корзине отображается колличесво товара \"([^\"]*)\"$")
+    @И("^(?:пользователь|он)? проверяет, что в корзине отображается колличесво товара \"([^\"]*)\"$")
     public void addToShoppingCart(int quantity) {
         app.addToShoppingCartAndAssert(quantity);
     }
@@ -45,6 +45,11 @@ public class SwagLabsStep {
     @Когда("^(?:пользователь|он)? сортирует товары по цене от высокой к низкой")
     public void sortsProductsByPriceFromHighToLow() {
         app.sortByPriceHighLow();
+    }
+
+    @Тогда("^(?:пользователь|он)? проверяет, что отображается сообщение об ошибке \"([^\"]*)\"$")
+    public void checkError(String massage) {
+        app.checkErrorMassage(massage);
     }
 
 
