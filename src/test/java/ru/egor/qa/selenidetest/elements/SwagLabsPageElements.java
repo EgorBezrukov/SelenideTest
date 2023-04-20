@@ -24,11 +24,5 @@ public class SwagLabsPageElements {
     protected final ElementsCollection productPrices = $$(".inventory_item_price");
     protected final SelenideElement productSortContainer = $("select.product_sort_container");
 
-    public SelenideElement getErrorMessage() {
-        return errorMessage;
-    }
-    public ElementsCollection getProductNames() {
-        return productNames;
-    }
 
 }

@@ -3,56 +3,35 @@ package ru.egor.qa.selenidetest.steps;
 import io.cucumber.java.ru.И;
 import io.cucumber.java.ru.Когда;
 import io.cucumber.java.ru.Тогда;
-import org.junit.jupiter.api.Assertions;
-import ru.egor.qa.selenidetest.elements.SwagLabsPageElements;
 
-import static com.codeborne.selenide.CollectionCondition.sizeGreaterThan;
-import static com.codeborne.selenide.CollectionCondition.sizeGreaterThanOrEqual;
+import static com.codeborne.selenide.Selenide.$;
 
-public class SwagLabsStep extends SwagLabsPageElements {
-    private SwagLabsPageElements productsPage = new SwagLabsPageElements();
+public class SwagLabsStep {
 
-    @Когда("пользователь выполняет вход")
-    public void inputLogin() {
-        login.setValue("standard_user");
-        password.setValue("secret_sauce").pressEnter();
-
-    }
+    private final ApplicationManager app = new ApplicationManager();
 
     @И("^(?:пользователь|он)? проверяет что количество элементов на странице ровно \"([^\"]*)\"$")
     public void checkElementPage(int quantity) {
-        productNames.shouldHave(sizeGreaterThanOrEqual(quantity));
-//        ElementsCollection productNames = productsPage.getProductNames();
-//        productNames.shouldHave(CollectionCondition.sizeGreaterThan(0));
-//        productNames.shouldHave(CollectionCondition.allMatch(name -> !name.isEmpty()));
-
+        app.checkQuantityPageElements(quantity);
     }
 
-    @И("Он переходит на страницу рюкзака и запоминает значение цены")
+    @И("^(?:пользователь|он)? переходит на страницу рюкзака и запоминает значение цены$")
     public String openBackPackPage() {
-        backPackOpenPage.click();
-        final String price = backPackPrice.getText();
-        return price;
+        return app.openBackPackAndRememberPrice();
     }
 
-    @И("Он добавляет товар в корзину и проверяет что в корзине отображается колличесво товара {int}")
+    @И("^(?:пользователь|он)? добавляет товар в корзину и проверяет что в корзине отображается колличесво товара \"([^\"]*)\"$")
     public void addToShoppingCart(int quantity) {
-        addToCartButton.click();
-        String result = cartBadge.getText();
-        Integer res = Integer.parseInt(result);
-        Assertions.assertEquals(quantity, res);
-//        if (res.equals(quantity)){
-//            System.out.println(true);
-//        }else  System.out.println(false);
-
+        app.addToShoppingCartAndAssert(quantity);
     }
 
-    @Тогда("Он переходит в корзину и проверят сумму заказа")
+    @Тогда("^(?:пользователь|он)? проверят сумму заказа$")
     public void checkSumOrder() {
+        checkOrderSum();
+    }
 
-        cartButton.click();
-        String result = itemPrise.getText();
-//        Assertions.assertEquals(result, openBackPackPage());
+    private void checkOrderSum() {
+        String result = $(".inventory_item_price").getText();
         if (result.equals(openBackPackPage())) {
             System.out.println(result);
         } else System.out.println(result + " не равно " + openBackPackPage());
@@ -60,25 +39,13 @@ public class SwagLabsStep extends SwagLabsPageElements {
 
     @Когда("^(?:пользователь|он)? сортирует товары по цене от низкой к высокой$")
     public void sortsProductsByPriceFromLowToHigh() {
-        productSortContainer.selectOptionByValue("lohi");
+        app.sortByPriceLowHigh();
     }
 
     @Когда("^(?:пользователь|он)? сортирует товары по цене от высокой к низкой")
     public void sortsProductsByPriceFromHighToLow() {
-        productSortContainer.selectOptionByValue("hilo");
+        app.sortByPriceHighLow();
     }
 
-    @Тогда("^(?:пользователь|он)? проверяет, что товары должны быть отсортированы по цене от низкой к высокой$")
-    public void theProductsShouldBeSortedByPriceFromLowToHigh() {
-        products.shouldHave(sizeGreaterThan(0));
-        productPrices.shouldHave(sizeGreaterThan(0));
-//        productPrices.shouldBe(sortedBy("text"));
-    }
 
-    @Тогда("^(?:пользователь|он)? проверяет, что товары должны быть отсортированы по цене от высокой к низкой")
-    public void theProductsShouldBeSortedByPriceFromHighToLow() {
-        products.shouldHave(sizeGreaterThan(0));
-        productPrices.shouldHave(sizeGreaterThan(0));
-//        productPrices.shouldBe(sort("text", reverseOrder()));
-    }
 }
