@@ -30,7 +30,8 @@ public class SwagLabsStep {
         checkOrderSum();
     }
 
-    private void checkOrderSum() {
+
+    public void checkOrderSum() {
         String result = $(".inventory_item_price").getText();
         if (result.equals(openBackPackPage())) {
             System.out.println(result);
