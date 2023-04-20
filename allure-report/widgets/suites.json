@@ -1,1 +1,1 @@
-{"total":1,"items":[{"uid":"4d7d331d345b1b2994361e8d56348236","name":"Проверка функционала траницы с продуктами","statistic":{"failed":0,"broken":0,"skipped":1,"passed":0,"unknown":0,"total":1}}]}
+{"total":1,"items":[{"uid":"4d7d331d345b1b2994361e8d56348236","name":"Проверка функционала траницы с продуктами","statistic":{"failed":0,"broken":0,"skipped":0,"passed":1,"unknown":0,"total":1}}]}

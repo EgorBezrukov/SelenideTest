@@ -6,7 +6,7 @@ public class TreeStepsDef {
 
     public TreeStepsDef(){}
 
-    @И("^h(\\d+)\s((.+))$")
+    @И("^h(\\d+)(\\(.+\\))$")
     public void treeRow(int nodeLevel, String nodeName){
         System.out.println(String.format("Шаг %d - %s", nodeLevel, nodeName));
     }

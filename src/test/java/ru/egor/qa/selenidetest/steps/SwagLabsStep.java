@@ -16,8 +16,8 @@ public class SwagLabsStep {
     }
 
     @И("^(?:пользователь|он)? переходит на страницу рюкзака и запоминает значение цены$")
-    public String openBackPackPage() {
-        return app.openBackPackAndRememberPrice();
+    public void openBackPackPage() {
+         app.openBackPackAndRememberPrice();
     }
 
     @И("^(?:пользователь|он)? проверяет, что в корзине отображается колличесво товара \"([^\"]*)\"$")
@@ -27,16 +27,9 @@ public class SwagLabsStep {
 
     @Тогда("^(?:пользователь|он)? проверят сумму заказа$")
     public void checkSumOrder() {
-        checkOrderSum();
+        app.checkOrderSum();
     }
 
-
-    public void checkOrderSum() {
-        String result = $(".inventory_item_price").getText();
-        if (result.equals(openBackPackPage())) {
-            System.out.println(result);
-        } else System.out.println(result + " не равно " + openBackPackPage());
-    }
 
     @Когда("^(?:пользователь|он)? сортирует товары по цене от низкой к высокой$")
     public void sortsProductsByPriceFromLowToHigh() {

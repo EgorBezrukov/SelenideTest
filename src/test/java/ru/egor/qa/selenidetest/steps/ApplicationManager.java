@@ -13,6 +13,8 @@ import static com.codeborne.selenide.Selenide.$;
 public class ApplicationManager implements ru.egor.qa.selenidetest.interfaces.CommonInterfaces {
     private final SwagLabsPageElements sw = new SwagLabsPageElements();
 
+    private String price;
+
     @Override
     public void enterLoginAndPassword(String fieldName, String fieldValue) {
         String name;
@@ -36,7 +38,7 @@ public class ApplicationManager implements ru.egor.qa.selenidetest.interfaces.Co
     @Override
     public void openUrlAndConfigure(String url) {
         Configuration.browserSize = "1920x1080";
-        Configuration.timeout = 60000;
+        Configuration.timeout = 20000;
         Selenide.open(url);
     }
 
@@ -49,15 +51,21 @@ public class ApplicationManager implements ru.egor.qa.selenidetest.interfaces.Co
         sw.getProductNames().shouldHave(sizeGreaterThanOrEqual(quantity));
     }
 
-    public String openBackPackAndRememberPrice() {
-        final String price = sw.getBackPackPrice().getText();
-        return price;
+    public void openBackPackAndRememberPrice() {
+        price = sw.getBackPackPrice().getText();
     }
 
     public void addToShoppingCartAndAssert(int quantity) {
         String result = sw.getCartBadge().getText();
         Integer res = Integer.parseInt(result);
         Assertions.assertEquals(quantity, res);
+    }
+
+    public void checkOrderSum() {
+        String result = $(".inventory_item_price").getText();
+        if (result.equals(price)) {
+            System.out.println(result);
+        } else System.out.println(result + " не равно " + price);
     }
 
     public void sortByPriceLowHigh() {

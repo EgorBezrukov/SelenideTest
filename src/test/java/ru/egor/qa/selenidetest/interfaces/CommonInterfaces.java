@@ -14,7 +14,7 @@ public interface CommonInterfaces {
     void enterLoginAndPassword(String fieldName, String fieldValue);
 
     /**
-     * позволяет по имени элемента или с помощью css лементов нажать на кнопку
+     * позволяет по имени элемента или с помощью css элементов нажать на кнопку
      *
      * @param btnName передаваемое значение поля элемента
      */
