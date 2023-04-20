@@ -6,6 +6,6 @@
 * ./gradlew clean test
 
 Запуск аллюр для .feature файлов:
-* allure generate allure-results
+* allure generate --clean allure-results
 
 
