@@ -1,2 +1,2 @@
 "Status","Start Time","Stop Time","Duration in ms","Parent Suite","Suite","Sub Suite","Test Class","Test Method","Name","Description"
-"passed","Thu Apr 20 22:45:10 MSK 2023","Thu Apr 20 22:45:21 MSK 2023","11034","","Проверка функционала траницы с продуктами","","Проверить, что все продукты отображаются на странице","","Проверить, что все продукты отображаются на странице",""
+"passed","Mon Apr 24 07:26:33 MSK 2023","Mon Apr 24 07:26:45 MSK 2023","12289","","Выполнение покупки на сайте https://www.saucedemo.com/","","Выполнение покупки","","Выполнение покупки",""

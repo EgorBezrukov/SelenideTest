@@ -5,13 +5,6 @@ package ru.egor.qa.selenidetest.interfaces;
  */
 
 public interface CommonInterfaces {
-    /**
-     * Позволяет по имени элемента определить, в какое полле будет введен логин или пароль
-     *
-     * @param fieldName  название поля элемента
-     * @param fieldValue значение передаваемое в поле
-     */
-    void enterLoginAndPassword(String fieldName, String fieldValue);
 
     /**
      * позволяет по имени элемента или с помощью css элементов нажать на кнопку
@@ -36,4 +29,18 @@ public interface CommonInterfaces {
      */
 
     void openUrlAndConfigure(String url);
+    /**
+     * Позволяет по селектору поля подставить в него передаваемое значение
+     *
+     *@param field селектор поля
+     *@param value передаваемое значение поля элемента
+     */
+    void enterValueIntTheField(String field, String value);
+    /**
+     * Позволяет по селектору поля получить его значение и сравнить с передаваемым значением
+     *
+     * @param field селектор поля
+     * @param value передаваемое значение поля элемента
+     */
+    void checkValueField(String field, String value);
 }

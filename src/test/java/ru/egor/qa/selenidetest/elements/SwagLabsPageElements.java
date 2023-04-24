@@ -3,13 +3,12 @@ package ru.egor.qa.selenidetest.elements;
 import com.codeborne.selenide.ElementsCollection;
 import com.codeborne.selenide.SelenideElement;
 
+import static com.codeborne.selenide.CollectionCondition.sizeGreaterThanOrEqual;
 import static com.codeborne.selenide.Selenide.$;
 import static com.codeborne.selenide.Selenide.$$;
 
 public class SwagLabsPageElements {
 
-    protected final SelenideElement login = $("#user-name");
-    protected final SelenideElement password = $("#password");
     protected final ElementsCollection inventoryList = $$(".inventory_list");
     protected final SelenideElement backPackOpenPage = $("#item_4_title_link");
     protected final SelenideElement backPackPrice = $(".inventory_details_price");
@@ -24,14 +23,6 @@ public class SwagLabsPageElements {
     protected final SelenideElement productSortContainer = $("select.product_sort_container");
 
 
-    public SelenideElement getLogin() {
-        return login;
-    }
-
-    public SelenideElement getPassword() {
-        return password;
-    }
-
     public ElementsCollection getInventoryList() {
         return inventoryList;
     }
@@ -40,32 +31,32 @@ public class SwagLabsPageElements {
         return backPackOpenPage;
     }
 
-    public SelenideElement getBackPackPrice() {
-        return backPackPrice;
+    public String getBackPackPrice() {
+        return backPackPrice.getText();
     }
 
     public SelenideElement getAddToCartButton() {
         return addToCartButton;
     }
 
-    public SelenideElement getCartBadge() {
-        return cartBadge;
+    public String getCartBadge() {
+        return cartBadge.getText();
     }
 
     public SelenideElement getCartButton() {
         return cartButton;
     }
 
-    public SelenideElement getItemPrise() {
-        return itemPrise;
+    public String getItemPrise() {
+        return itemPrise.getText();
     }
 
     public SelenideElement getErrorMessage() {
         return errorMessage;
     }
 
-    public ElementsCollection getProductNames() {
-        return productNames;
+    public ElementsCollection getProductNames(int quantity) {
+        return productNames.shouldHave(sizeGreaterThanOrEqual(quantity));
     }
 
     public ElementsCollection getProducts() {

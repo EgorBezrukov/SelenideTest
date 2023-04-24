@@ -3,26 +3,12 @@ package ru.egor.qa.selenidetest.steps;
 import io.cucumber.java.ru.И;
 import io.cucumber.java.ru.Тогда;
 
+/**
+ * Класс с общими шагами проекта
+ */
 public class CommonSteps {
 
     private final ApplicationManager app = new ApplicationManager();
-
-    /**
-     * Описание шага: Позволяет по имени элемента подставить в поле передаваемое значение
-     * <p>
-     * Пример:
-     * <pre>
-     *         Когда пользователь вводит в поле "Логин" знчение "standard_user"
-     *         И он вводит в поле "пароль" знчение "secret_sauce"
-     * </pre>
-     * @param fieldName  название поля элемента
-     * @param fieldValue значение передаваемое в поле
-     * </p>
-     */
-    @И("^(?:пользователь|он)? вводит в поле \"([^\"]*)\" знчение \"([^\"]*)\"$")
-    public void input(String fieldName, String fieldValue) {
-        app.enterLoginAndPassword(fieldName, fieldValue);
-    }
 
     /**
      * Описание шага: позволяет по имени элемента или с помощью css элементов нажать на кнопку
@@ -54,5 +40,39 @@ public class CommonSteps {
     public void checkUrl(String currentUrl) {
         app.getUrlAndCheck(currentUrl);
     }
+    /**
+     * Описание шага: Позволяет по селектору поля подставить в него передаваемое значение
+     * <p>
+     * Пример:
+     *      <pre>
+     *           И он заполняет поле "firstName" значением "Selenide"
+     *           И он заполняет поле "#last-name" значением "Test"
+     *           И он заполняет поле "postalCode" значением "0004"
+     *     </pre>
+     * @param field селектор поля
+     * @param value передаваемое значение поля элемента
+     * </p>
+     */
+    @И("^(?:поьзователь|он)? заполняет поле \"([^\"]*)\" значением \"([^\"]*)\"$")
+    public void fillingFields(String field, String value) {
+        app.enterValueIntTheField(field, value);
+    }
+    /**
+     * Описание шага: Позволяет по селектору поля получить его значение и сравнить с передаваемым значением
+     * <p>
+     * Пример:
+     *      <pre>
+     *          Тогда пользователь проверяет, что значение поля ".inventory_item_price" равно "$29.99"
+     *     </pre>
+     * @param field селектор поля
+     * @param value передаваемое значение
+     * </p>
+     */
+    @Тогда("^(?:пользователь|он)? проверяет, что значение поля \"([^\"]*)\" равно \"([^\"]*)\"$")
+    public void checkValueFieldStep(String field, String value) {
+        app.checkValueField(field, value);
+    }
+
+//    @И("^(?:пользователь|он)? запоминает значение поля \"([^\"]*)\" в переменную \"([^\"]*)\"$")
 
 }
