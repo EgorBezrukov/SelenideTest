@@ -50,6 +50,7 @@ dependencies {
             "io.qameta.allure:allure-java-commons:${allureVersion}",
             "io.qameta.allure:allure-commandline:${allureVersion}",
             "io.qameta.allure:allure-rest-assured:${allureVersion}",
+            'org.jetbrains:annotations:24.0.1'
 
     )
     testImplementation(

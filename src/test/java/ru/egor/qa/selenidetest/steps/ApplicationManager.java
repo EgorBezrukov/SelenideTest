@@ -8,11 +8,23 @@ import org.openqa.selenium.By;
 import ru.egor.qa.selenidetest.elements.SwagLabsPageElements;
 
 import static com.codeborne.selenide.Selenide.$;
+import static com.codeborne.selenide.Selenide.$x;
 
 public class ApplicationManager implements ru.egor.qa.selenidetest.interfaces.CommonInterfaces {
     private final SwagLabsPageElements sw = new SwagLabsPageElements();
 
     private String price;
+    private String fieldValue;
+
+    public void rememberValue(String value) {
+        if (value.contains(".") | value.contains("#")) fieldValue = $(value).getText();
+        else if (value.contains("//")) fieldValue = $x(value).getText();
+        else fieldValue = $(By.name(value)).getText();
+    }
+
+    public void assertValue(String key) {
+        Assertions.assertEquals(key, fieldValue);
+    }
 
 
     public void enterLoginAndPassword(String fieldName, String fieldValue) {
@@ -25,18 +37,22 @@ public class ApplicationManager implements ru.egor.qa.selenidetest.interfaces.Co
     @Override
     public void button(String btnName) {
         if (btnName.contains(".") | btnName.contains("#")) $(btnName).click();
+        else if (btnName.contains("//")) $x(btnName).click();
         else $(By.name(btnName)).click();
     }
+
     @Override
     public void enterValueIntTheField(String field, String value) {
         if (field.contains(".") | field.contains("#")) $(field).sendKeys(value);
+        else if (field.contains("//")) $x(field).sendKeys(value);
         else $(By.name(field)).sendKeys(value);
     }
+
     @Override
     public void checkValueField(String field, String value) {
         String result;
-        if (field.contains(".") | field.contains("#"))  result = $(field).getText();
-        else  result = $(By.name(field)).getText();
+        if (field.contains(".") | field.contains("#")) result = $(field).getText();
+        else result = $(By.name(field)).getText();
         Assertions.assertEquals(result, value);
     }
 
@@ -51,11 +67,6 @@ public class ApplicationManager implements ru.egor.qa.selenidetest.interfaces.Co
         Configuration.browserSize = "1920x1080";
         Configuration.timeout = 20000;
         Selenide.open(url);
-    }
-
-    public void checkErrorMassage(String massage) {
-        String res = sw.getErrorMessage().getText();
-        Assertions.assertEquals(res, massage);
     }
 
     public void checkQuantityPageElements(int quantity) {

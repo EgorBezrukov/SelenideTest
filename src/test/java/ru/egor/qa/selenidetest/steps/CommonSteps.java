@@ -6,9 +6,7 @@ import io.cucumber.java.ru.Тогда;
 /**
  * Класс с общими шагами проекта
  */
-public class CommonSteps {
-
-    private final ApplicationManager app = new ApplicationManager();
+public class CommonSteps extends ApplicationManager {
 
     /**
      * Описание шага: позволяет по имени элемента или с помощью css элементов нажать на кнопку
@@ -24,7 +22,7 @@ public class CommonSteps {
      */
     @И("^(?:пользователь|он)? нажимает на \"([^\"]*)\"$")
     public void clickButton(String btnName) {
-        app.button(btnName);
+        button(btnName);
     }
     /**
      * Описание шага: Сравнивает текущий url с передоваемым в параментрах
@@ -38,7 +36,7 @@ public class CommonSteps {
      */
     @Тогда("^(?:пользователь|он)? проверяет что адрес сайта равен \"([^\"]*)\"$")
     public void checkUrl(String currentUrl) {
-        app.getUrlAndCheck(currentUrl);
+        getUrlAndCheck(currentUrl);
     }
     /**
      * Описание шага: Позволяет по селектору поля подставить в него передаваемое значение
@@ -55,7 +53,7 @@ public class CommonSteps {
      */
     @И("^(?:поьзователь|он)? заполняет поле \"([^\"]*)\" значением \"([^\"]*)\"$")
     public void fillingFields(String field, String value) {
-        app.enterValueIntTheField(field, value);
+        enterValueIntTheField(field, value);
     }
     /**
      * Описание шага: Позволяет по селектору поля получить его значение и сравнить с передаваемым значением
@@ -70,9 +68,35 @@ public class CommonSteps {
      */
     @Тогда("^(?:пользователь|он)? проверяет, что значение поля \"([^\"]*)\" равно \"([^\"]*)\"$")
     public void checkValueFieldStep(String field, String value) {
-        app.checkValueField(field, value);
+        checkValueField(field, value);
     }
-
-//    @И("^(?:пользователь|он)? запоминает значение поля \"([^\"]*)\" в переменную \"([^\"]*)\"$")
+    /**
+     * Описание шага: Позволяет сохранить значение поля
+     * <p>
+     * Пример:
+     *      <pre>
+     *           И пользователь запоминает значение поля ".inventory_item_price"
+     *     </pre>
+     * @param value селектор поля
+     * </p>
+     */
+   @И("^(?:пользователь|он)? запоминает значение поля \"([^\"]*)\"$")
+    public void rememberElementValue(String value){
+        rememberValue(value);
+   }
+    /**
+     * Описание шага: Позволяет сравнить передаваемое значение с сохраненным
+     * <p>
+     * Пример:
+     *      <pre>
+     *           И пользователь проверяет что значение "$29" равно сохраненному знечению
+     *     </pre>
+     * @param value ожидаемый результат
+     * </p>
+     */
+    @И("^(?:пользователь|он)? проверяет что значение \"([^\"]*)\" равно сохраненному знечению$")
+    public void assertElementValue(String value){
+        assertValue(value);
+    }
 
 }

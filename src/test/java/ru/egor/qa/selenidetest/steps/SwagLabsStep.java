@@ -4,9 +4,8 @@ import io.cucumber.java.ru.И;
 import io.cucumber.java.ru.Когда;
 import io.cucumber.java.ru.Тогда;
 
-public class SwagLabsStep {
+public class SwagLabsStep extends ApplicationManager {
 
-    private final ApplicationManager app = new ApplicationManager();
 
     /**
      * Описание шага: Позволяет по имени элемента подставить в поле передаваемое значение
@@ -22,44 +21,38 @@ public class SwagLabsStep {
      */
     @И("^(?:пользователь|он)? вводит в поле \"([^\"]*)\" знчение \"([^\"]*)\"$")
     public void input(String fieldName, String fieldValue) {
-        app.enterLoginAndPassword(fieldName, fieldValue);
+        enterLoginAndPassword(fieldName, fieldValue);
     }
 
     @И("^(?:пользователь|он)? проверяет что количество элементов на странице ровно \"([^\"]*)\"$")
     public void checkElementPage(int quantity) {
-        app.checkQuantityPageElements(quantity);
+        checkQuantityPageElements(quantity);
     }
 
     @И("^(?:пользователь|он)? переходит на страницу рюкзака и запоминает значение цены$")
     public void openBackPackPage() {
-        app.openBackPackAndRememberPrice();
+        openBackPackAndRememberPrice();
     }
 
     @И("^(?:пользователь|он)? проверяет, что в корзине отображается колличесво товара \"([^\"]*)\"$")
     public void addToShoppingCart(int quantity) {
-        app.addToShoppingCartAndAssert(quantity);
+        addToShoppingCartAndAssert(quantity);
     }
 
     @Тогда("^(?:пользователь|он)? проверят сумму заказа$")
     public void checkSumOrder() {
-        app.checkOrderSum();
+        checkOrderSum();
     }
 
 
     @Когда("^(?:пользователь|он)? сортирует товары по цене от низкой к высокой$")
     public void sortsProductsByPriceFromLowToHigh() {
-        app.sortByPriceLowHigh();
+        sortByPriceLowHigh();
     }
 
     @Когда("^(?:пользователь|он)? сортирует товары по цене от высокой к низкой$")
     public void sortsProductsByPriceFromHighToLow() {
-        app.sortByPriceHighLow();
+        sortByPriceHighLow();
     }
-
-    @Тогда("^(?:пользователь|он)? проверяет, что отображается сообщение об ошибке \"([^\"]*)\"$")
-    public void checkError(String massage) {
-        app.checkErrorMassage(massage);
-    }
-
 
 }
