@@ -50,26 +50,6 @@ public class KlavaGonkiStep extends KlavaGonkiPageElements {
         Assertions.assertTrue(resulNumber > minValue, "Актуальный результат = " + resulNumber);
     }
 
-    @И("^(?:пользователь|он)? получает куки по названию$")
-    public void getCookies() {
-        String xsrfToken = WebDriverRunner.getWebDriver().manage().getCookieNamed("XSRF-TOKEN").getValue();
-    }
-
-//    @И("^(?:пользователь|он)? отправляет http запрос \"([^\"]*)\"$")
-//    public void sendRequest() {
-//        RestAssured.given()
-//                .contentType(ContentType.MULTIPART)
-//                .cookie("XSRF-TOKEN", "sadfgd");
-//    }
-
-    @Когда("бот выполняет вход")
-    public void inputLogin() {
-        enterPage.click();
-        login.setValue("Ssnail_");
-        password.setValue("Abrakadabra1-").pressEnter();
-
-
-    }
 
     @Тогда("Запускается быстрая игра")
     public void fastGameStart() {

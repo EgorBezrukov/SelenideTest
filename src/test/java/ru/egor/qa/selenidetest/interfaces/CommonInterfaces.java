@@ -11,7 +11,6 @@ public interface CommonInterfaces {
      *
      * @param btnName передаваемое значение поля элемента
      */
-
     void button(String btnName);
 
     /**
@@ -19,7 +18,6 @@ public interface CommonInterfaces {
      *
      * @param currentUrl передаваемое значение url-a
      */
-
     void getUrlAndCheck(String currentUrl);
 
     /**
@@ -27,20 +25,51 @@ public interface CommonInterfaces {
      *
      * @param url передаваемое значение url-a стартовой страницы
      */
-
     void openUrlAndConfigure(String url);
+
     /**
      * Позволяет по селектору поля подставить в него передаваемое значение
      *
-     *@param field селектор поля
-     *@param value передаваемое значение поля элемента
+     * @param fieldSelector селектор поля
+     * @param value передаваемое значение поля элемента
      */
-    void enterValueIntTheField(String field, String value);
+    void enterValueIntTheField(String fieldSelector, String value);
+
     /**
      * Позволяет по селектору поля получить его значение и сравнить с передаваемым значением
      *
-     * @param field селектор поля
+     * @param fieldSelector селектор поля
      * @param value передаваемое значение поля элемента
      */
-    void checkValueField(String field, String value);
+    void checkValueField(String fieldSelector, String value);
+
+    /**
+     * Позволяет по селектору поля получить его значение и сохранить его
+     *
+     * @param fieldSelector селектор поля
+     */
+    void rememberValue(String fieldSelector);
+
+    /**
+     * Позволяет сравнить значение с сохраненным ранее значением
+     *
+     * @param key ожидаемый результат
+     */
+    void assertValue(String key);
+
+    /**
+     * Позволяет сравнить колличесво элементов на страницы с ожидаемым результатом
+     *
+     * @param fieldSelector селектор элемта страницы
+     * @param quantity ожидаемый результат для сравнения
+     */
+    void checkQuantityPageElements(String fieldSelector, int quantity);
+
+    /**
+     * Позволяет по селектору поля сортировки отсортировать элементы на страницы
+     *
+     * @param fieldSelector селектор поля
+     * @param key ключ сортировки
+     */
+    void sortElement(String fieldSelector, String key);
 }
