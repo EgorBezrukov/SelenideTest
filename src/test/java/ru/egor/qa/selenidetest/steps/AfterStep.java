@@ -20,7 +20,7 @@ public class AfterStep {
         WebDriverRunner.getWebDriver().quit();
 
     }
-    /*Создание скриншота после каждого шага*/
+    /*Создание скриншота после падения теста*/
 
     @After
     public void onTestFailure(Scenario scenario) {

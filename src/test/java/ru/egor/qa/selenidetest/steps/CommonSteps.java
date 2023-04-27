@@ -1,5 +1,6 @@
 package ru.egor.qa.selenidetest.steps;
 
+import io.cucumber.datatable.DataTable;
 import io.cucumber.java.ru.И;
 import io.cucumber.java.ru.Когда;
 import io.cucumber.java.ru.Пусть;
@@ -121,7 +122,7 @@ public class CommonSteps extends UiCommonSteps {
     }
 
     /**
-     * Позволяет сравнить колличесво элементов на страницы с ожидаемым результатом
+     * Описание шага: Позволяет сравнить колличесво элементов на страницы с ожидаемым результатом
      *<p>
      * Пример:
      *      <pre>
@@ -136,7 +137,7 @@ public class CommonSteps extends UiCommonSteps {
         checkQuantityPageElements(fieldSelector,quantity);
     }
     /**
-     * Позволяет отсортировать элементы страницы
+     * Описание шага: Позволяет отсортировать элементы страницы
      *<p>
      * Пример:
      *      <pre>
@@ -150,5 +151,24 @@ public class CommonSteps extends UiCommonSteps {
     @Когда("^(?:пользователь|он)? сортирует элементы страницы \"([^\"]*)\" по параментру \"([^\"]*)\"$")
     public void sortPageElement(String fieldSelector, String key) {
         sortElement(fieldSelector,key);
+    }
+
+    /**
+     * Описание шага: Позволяет заполнять поля значениями используя табличную структуру
+     *<p>
+     * Пример:
+     *      <pre>
+     *       И он заполняет поля значениями:
+     *       | Field      | Key      |
+     *       | firstName  | Selenide |
+     *       | lastName   | Test     |
+     *       | postalCode | 606324   |
+     *      </pre>
+     * @param dataTable селектор элемта страницы
+     * </p>
+     */
+    @Когда("^(?:пользователь|он)? заполняет (?:поля|форму)? значениями:$")
+    public void fillFields(DataTable dataTable) {
+            fillsFieldsValue(dataTable);
     }
 }

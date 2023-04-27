@@ -1,5 +1,7 @@
 package ru.egor.qa.selenidetest.interfaces;
 
+import io.cucumber.datatable.DataTable;
+
 /**
  * Интерфейс с описанием общих шагов проекта
  */
@@ -72,4 +74,11 @@ public interface CommonInterfaces {
      * @param key ключ сортировки
      */
     void sortElement(String fieldSelector, String key);
+
+    /**
+     * Позволяет заполнять поля значениями используя табличную структуру
+     *
+     * @param dataTable таблица в которой передаются селекторы поля и передаваемое значение
+     */
+    void fillsFieldsValue(DataTable dataTable);
 }
