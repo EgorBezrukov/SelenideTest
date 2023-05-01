@@ -1,5 +1,6 @@
 plugins {
     id 'java'
+    id 'java-library'
     id 'io.qameta.allure' version '2.9.6'
 }
 
@@ -43,7 +44,14 @@ compileTestJava {
     options.encoding = 'UTF-8'
 }
 
+configurations {
+    cucumberRuntime {
+        extendsFrom testImplementation
+    }
+}
+
 dependencies {
+    api 'org.apache.commons:commons-math3:3.6.1'
     implementation(
             "io.qameta.allure:allure-cucumber7-jvm:$allureVersion",
             "io.cucumber:cucumber-java:${cucumberJavaVersion}",
@@ -51,7 +59,8 @@ dependencies {
             "io.qameta.allure:allure-commandline:${allureVersion}",
             "io.qameta.allure:allure-rest-assured:${allureVersion}",
             'org.jetbrains:annotations:24.0.1',
-            'org.projectlombok:lombok:1.18.20'
+            'org.projectlombok:lombok:1.18.20',
+            'com.google.guava:guava:29.0-jre'
     )
     testImplementation(
             "com.codeborne:selenide:${selenideVersion}",
@@ -70,14 +79,28 @@ dependencies {
             'org.apache.poi:poi:3.9'
     )
     annotationProcessor 'org.projectlombok:lombok:1.18.20'
+    testRuntimeOnly(
+            "org.junit.platform:junit-platform-launcher:1.7.2",
+            "org.junit.vintage:junit-vintage-engine:5.7.2")
 
 
 }
-
-
-tasks.withType(Test) {
-    useJUnitPlatform()
+task cucumberCli() {
+    dependsOn assemble, testClasses
+    doLast {
+        javaexec {
+            main = "io.cucumber.core.cli.Main"
+            classpath = configurations.cucumberRuntime + sourceSets.main.output + sourceSets.test.output
+            args = [
+                    '--plugin', 'pretty',
+                    '--plugin', 'html:target/cucumber-report.html',
+                    '--glue', 'ru.egor.qa.selenidetest.steps',
+                    'src/test/resources']
+        }
+    }
 }
+
 test {
     useJUnitPlatform()
+    scanForTestClasses = false
 }
