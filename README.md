@@ -1,4 +1,4 @@
-# selenide_test
+# Selenide/Cucumber Project
 
 Мой тестовый проект на Java/Selenide/Cucumber
 
