@@ -94,4 +94,10 @@ public interface CommonInterfaces {
      * @param milliseconds миллисекунды
      */
     void wait(int milliseconds);
+    /**
+     * Позволяет проверить поле ввода на пустоту
+     *
+     * @param value селектор поля ввода
+     */
+    void emptyField(String value);
 }

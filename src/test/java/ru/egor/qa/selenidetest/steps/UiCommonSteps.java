@@ -1,10 +1,8 @@
 package ru.egor.qa.selenidetest.steps;
 
 import com.codeborne.selenide.Configuration;
-import com.codeborne.selenide.Selenide;
 import com.codeborne.selenide.WebDriverRunner;
 import io.cucumber.datatable.DataTable;
-import lombok.SneakyThrows;
 import org.jetbrains.annotations.NotNull;
 import org.junit.jupiter.api.Assertions;
 import org.openqa.selenium.By;
@@ -14,9 +12,22 @@ import java.util.Map;
 
 import static com.codeborne.selenide.CollectionCondition.sizeGreaterThanOrEqual;
 import static com.codeborne.selenide.Selenide.*;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
 abstract public class UiCommonSteps implements ru.egor.qa.selenidetest.interfaces.CommonInterfaces {
     private String fieldValue;
+
+    @Override
+    public void emptyField(String value) {
+        boolean isSearchFieldEmpty;
+        if (value.contains(".") | value.contains("#")) {
+            isSearchFieldEmpty = $(value).val().isEmpty();
+        } else if (value.contains("//")) {
+            isSearchFieldEmpty = $x(value).val().isEmpty();
+        } else isSearchFieldEmpty = $(By.name(value)).val().isEmpty();
+
+        assertTrue(isSearchFieldEmpty, "Поле поиска не пустое");
+    }
 
     @Override
     public void wait(int milliseconds) {
@@ -26,6 +37,7 @@ abstract public class UiCommonSteps implements ru.egor.qa.selenidetest.interface
             e.printStackTrace();
         }
     }
+
     @Override
     public void newFrame(int number) {
         switchTo().window(number);

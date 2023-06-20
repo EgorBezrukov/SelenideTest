@@ -178,7 +178,8 @@ public class CommonSteps extends UiCommonSteps {
      *<p>
      * Пример:
      *      <pre>
-     *       И он открывает новую вкладку
+     *       И он открывает 1 вкладку
+     *       И он открывает 2 вкладку
      *      </pre>
      *      @param number номер вкладки
      * </p>
@@ -201,5 +202,20 @@ public class CommonSteps extends UiCommonSteps {
     @Когда("^(?:пользователь|он)? ожидает \"([^\"]*)\" миллисекунд")
     public void waitHelper(int milliseconds){
         wait(milliseconds);
+    }
+
+    /**
+     * Описание шага: Позволяет проверить поле ввода на пустоту
+     *<p>
+     * Пример:
+     *      <pre>
+     *      Тогда он проверяет что поле "//input[@placeholder = 'Поиск']" пустое
+     *      </pre>
+     *      @param value селектор поля ввода
+     * </p>
+     */
+    @Когда("^(?:пользователь|он)? проверяет что поле \"([^\"]*)\" пустое")
+    public void fieldIsEmpty(String value){
+        emptyField(value);
     }
 }
