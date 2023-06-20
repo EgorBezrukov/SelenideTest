@@ -20,6 +20,7 @@ public class CommonSteps extends UiCommonSteps {
      * @param url  url стартовой страницы
      * </p>
      */
+
     @Пусть("^(?:пользователь|он)? открывает сайт \"([^\"]*)\"$")
     public void openSite(String url) {
         openUrlAndConfigure(url);
@@ -170,5 +171,9 @@ public class CommonSteps extends UiCommonSteps {
     @Когда("^(?:пользователь|он)? заполняет (?:поля|форму)? значениями:$")
     public void fillFields(DataTable dataTable) {
             fillsFieldsValue(dataTable);
+    }
+    @Когда("^(?:пользователь|он)? открывает новую вкладку")
+    public void openNewWindow(){
+        newFrame();
     }
 }

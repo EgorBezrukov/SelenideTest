@@ -18,6 +18,10 @@ import static com.codeborne.selenide.Selenide.*;
 abstract public class UiCommonSteps implements ru.egor.qa.selenidetest.interfaces.CommonInterfaces {
     private String fieldValue;
 
+    public void newFrame(){
+        switchTo().window(1);
+    }
+
     @Override
     public void fillsFieldsValue(DataTable dataTable) {
         List<Map<String, String>> rows = dataTable.asMaps(String.class, String.class);
