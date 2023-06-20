@@ -4,6 +4,7 @@ import com.codeborne.selenide.Configuration;
 import com.codeborne.selenide.Selenide;
 import com.codeborne.selenide.WebDriverRunner;
 import io.cucumber.datatable.DataTable;
+import lombok.SneakyThrows;
 import org.jetbrains.annotations.NotNull;
 import org.junit.jupiter.api.Assertions;
 import org.openqa.selenium.By;
@@ -18,8 +19,16 @@ abstract public class UiCommonSteps implements ru.egor.qa.selenidetest.interface
     private String fieldValue;
 
     @Override
-    public void newFrame() {
-        switchTo().window(1);
+    public void wait(int milliseconds) {
+        try {
+            Thread.sleep(milliseconds);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+    }
+    @Override
+    public void newFrame(int number) {
+        switchTo().window(number);
     }
 
     @Override
@@ -106,6 +115,6 @@ abstract public class UiCommonSteps implements ru.egor.qa.selenidetest.interface
     public void openUrlAndConfigure(String url) {
         Configuration.browserSize = "1920x1080";
         Configuration.timeout = 20000;
-        Selenide.open(url);
+        open(url);
     }
 }

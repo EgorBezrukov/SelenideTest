@@ -48,12 +48,12 @@ public class CommonSteps extends UiCommonSteps {
      * <p>
      * Пример:
      *      <pre>
-     *           Тогда пользователь проверяет что адрес сайта равен "https://www.saucedemo.com/inventory.html"
+     *           Тогда пользователь проверяет что адрес сайта соответствует "https://www.saucedemo.com/inventory.html"
      *     </pre>
      * @param currentUrl передаваемое значение поля элемента
      * </p>
      */
-    @Тогда("^(?:пользователь|он)? проверяет что адрес сайта равен \"([^\"]*)\"$")
+    @Тогда("^(?:пользователь|он)? проверяет что адрес сайта соответствует \"([^\"]*)\"$")
     public void checkUrl(String currentUrl) {
         getUrlAndCheck(currentUrl);
     }
@@ -180,10 +180,26 @@ public class CommonSteps extends UiCommonSteps {
      *      <pre>
      *       И он открывает новую вкладку
      *      </pre>
+     *      @param number номер вкладки
      * </p>
      */
-    @Когда("^(?:пользователь|он)? открывает новую вкладку")
-    public void openNewWindow(){
-        newFrame();
+    @Когда("^(?:пользователь|он)? открывает \"([^\"]*)\" вкладку$")
+    public void openNewWindow(int number){
+        newFrame(number);
+    }
+
+    /**
+     * Описание шага: Позволяет включить ожидание
+     *<p>
+     * Пример:
+     *      <pre>
+     *      И он ожидает "5000" миллисекунд
+     *      </pre>
+     *      @param milliseconds миллисекунды
+     * </p>
+     */
+    @Когда("^(?:пользователь|он)? ожидает \"([^\"]*)\" миллисекунд")
+    public void waitHelper(int milliseconds){
+        wait(milliseconds);
     }
 }

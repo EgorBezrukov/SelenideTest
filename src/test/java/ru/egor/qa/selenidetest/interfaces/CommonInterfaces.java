@@ -84,6 +84,14 @@ public interface CommonInterfaces {
 
     /**
      * Позволяет переключиться на новую вкладку
+     *
+     * @param number номер вкладки
      */
-    void newFrame();
+    void newFrame(int number);
+    /**
+     * Позволяет включить ожидание
+     *
+     * @param milliseconds миллисекунды
+     */
+    void wait(int milliseconds);
 }

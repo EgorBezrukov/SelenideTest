@@ -17,7 +17,7 @@
     И он нажимает на "login-button"
 
     * h1(2. Проверка входа)
-    Тогда пользователь проверяет что адрес сайта равен "https://www.saucedemo.com/inventory.html"
+    Тогда пользователь проверяет что адрес сайта соответствует "https://www.saucedemo.com/inventory.html"
 
   @All
   @CheckRegistrationFormAll
