@@ -2,7 +2,6 @@ package ru.egor.qa.selenidetest.steps;
 
 import com.codeborne.selenide.Configuration;
 import com.codeborne.selenide.Selenide;
-import com.codeborne.selenide.SelenideElement;
 import com.codeborne.selenide.WebDriverRunner;
 import io.cucumber.datatable.DataTable;
 import org.jetbrains.annotations.NotNull;
@@ -18,7 +17,8 @@ import static com.codeborne.selenide.Selenide.*;
 abstract public class UiCommonSteps implements ru.egor.qa.selenidetest.interfaces.CommonInterfaces {
     private String fieldValue;
 
-    public void newFrame(){
+    @Override
+    public void newFrame() {
         switchTo().window(1);
     }
 

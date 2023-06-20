@@ -172,6 +172,16 @@ public class CommonSteps extends UiCommonSteps {
     public void fillFields(DataTable dataTable) {
             fillsFieldsValue(dataTable);
     }
+
+    /**
+     * Описание шага: Позволяет переключиться на новую вкладку
+     *<p>
+     * Пример:
+     *      <pre>
+     *       И он открывает новую вкладку
+     *      </pre>
+     * </p>
+     */
     @Когда("^(?:пользователь|он)? открывает новую вкладку")
     public void openNewWindow(){
         newFrame();

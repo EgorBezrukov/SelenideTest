@@ -81,4 +81,9 @@ public interface CommonInterfaces {
      * @param dataTable таблица в которой передаются селекторы поля и передаваемое значение
      */
     void fillsFieldsValue(DataTable dataTable);
+
+    /**
+     * Позволяет переключиться на новую вкладку
+     */
+    void newFrame();
 }

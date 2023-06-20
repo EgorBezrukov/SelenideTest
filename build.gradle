@@ -1,13 +1,13 @@
 plugins {
     id 'java'
     id 'java-library'
-    id 'io.qameta.allure' version '2.9.6'
+    id 'io.qameta.allure' version '2.10.0'
 }
+[compileJava, compileTestJava]*.options*.encoding = "UTF-8"
 
 group = 'ru.egor.qa.selenidetest'
 version = '1.0-SNAPSHOT'
 
-apply plugin: 'io.qameta.allure'
 
 def selenideVersion = '6.12.4',
     junitJupiterVersion = '5.9.2',
@@ -37,12 +37,6 @@ allure {
         }
     }
 }
-compileJava {
-    options.encoding = 'UTF-8'
-}
-compileTestJava {
-    options.encoding = 'UTF-8'
-}
 
 configurations {
     cucumberRuntime {
@@ -52,33 +46,49 @@ configurations {
 
 dependencies {
     api 'org.apache.commons:commons-math3:3.6.1'
-    implementation(
-            "io.qameta.allure:allure-cucumber7-jvm:$allureVersion",
-            "io.cucumber:cucumber-java:${cucumberJavaVersion}",
-            "io.qameta.allure:allure-java-commons:${allureVersion}",
-            "io.qameta.allure:allure-commandline:${allureVersion}",
-            "io.qameta.allure:allure-rest-assured:${allureVersion}",
-            'org.jetbrains:annotations:24.0.1',
-            'org.projectlombok:lombok:1.18.20',
-            'com.google.guava:guava:29.0-jre'
-    )
+
+    //JUnit
     testImplementation(
-            "com.codeborne:selenide:${selenideVersion}",
             "org.junit.jupiter:junit-jupiter-api:${junitJupiterVersion}",
-            "org.junit.jupiter:junit-jupiter-engine:${junitJupiterVersion}",
+            "org.junit.jupiter:junit-jupiter-engine:${junitJupiterVersion}"
+    )
+    //Selenide
+    implementation "com.codeborne:selenide:${selenideVersion}"
+
+    //Cucumber
+    testImplementation(
             "io.cucumber:cucumber-java:$cucumberJavaVersion",
             "io.cucumber:cucumber-core:$cucumberJavaVersion",
-            "io.cucumber:cucumber-junit:${cucumberJunitVersion}",
-            "com.fasterxml.jackson.core:jackson-databind:${jacksonVersion}",
-            "org.assertj:assertj-core:$assertjVersion",
-            "org.aspectj:aspectjweaver:$aspectjVersion",
+            "io.cucumber:cucumber-junit:${cucumberJunitVersion}"
+    )
+
+    //Allure
+    testImplementation(
+            "io.qameta.allure:allure-cucumber7-jvm:${allureVersion}",
+            "io.qameta.allure:allure-java-commons:${allureVersion}",
+            "io.qameta.allure:allure-commandline:${allureVersion}",
             "io.qameta.allure:allure-junit5:${allureVersion}",
             "io.qameta.allure:allure-assertj:${allureVersion}",
-            "io.qameta.allure:allure-selenide:${allureVersion}",
-            'com.opencsv:opencsv:5.6',
-            'org.apache.poi:poi:3.9'
+            "io.qameta.allure:allure-selenide:${allureVersion}"
     )
-    annotationProcessor 'org.projectlombok:lombok:1.18.20'
+
+    //Assertj
+    testImplementation(
+            "org.assertj:assertj-core:$assertjVersion",
+            "org.aspectj:aspectjweaver:$aspectjVersion"
+    )
+
+    implementation(
+            'org.jetbrains:annotations:24.0.1',
+            'org.projectlombok:lombok:1.18.20',
+            'com.google.guava:guava:30.0-jre'
+    )
+    testImplementation(
+            "com.fasterxml.jackson.core:jackson-databind:${jacksonVersion}",
+            'com.opencsv:opencsv:5.6',
+            'org.apache.poi:poi:3.17'
+    )
+
     testRuntimeOnly(
             "org.junit.platform:junit-platform-launcher:1.7.2",
             "org.junit.vintage:junit-vintage-engine:5.7.2")
