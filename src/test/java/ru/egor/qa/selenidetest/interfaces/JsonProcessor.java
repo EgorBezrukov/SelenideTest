@@ -1,4 +1,6 @@
-package ru.egor.qa.selenidetest.model;
+package ru.egor.qa.selenidetest.interfaces;
+
+import ru.egor.qa.selenidetest.modelData.TestData;
 
 import java.util.Map;
 

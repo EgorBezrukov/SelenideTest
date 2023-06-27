@@ -1,4 +1,4 @@
-package ru.egor.qa.selenidetest.model;
+package ru.egor.qa.selenidetest.modelData;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.AllArgsConstructor;

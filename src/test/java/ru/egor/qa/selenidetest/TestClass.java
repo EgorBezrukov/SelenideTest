@@ -2,15 +2,11 @@ package ru.egor.qa.selenidetest;
 
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
-import com.fasterxml.jackson.databind.ObjectMapper;
-import org.junit.Before;
-import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
-import ru.egor.qa.selenidetest.model.JksonJsonProcessor;
-import ru.egor.qa.selenidetest.model.JsonProcessor;
-import ru.egor.qa.selenidetest.model.TestData;
+import ru.egor.qa.selenidetest.modelData.JksonJsonProcessor;
+import ru.egor.qa.selenidetest.interfaces.JsonProcessor;
+import ru.egor.qa.selenidetest.modelData.TestData;
 
-import java.io.File;
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Paths;

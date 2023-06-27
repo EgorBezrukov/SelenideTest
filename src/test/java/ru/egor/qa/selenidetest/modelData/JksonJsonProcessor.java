@@ -1,8 +1,9 @@
-package ru.egor.qa.selenidetest.model;
+package ru.egor.qa.selenidetest.modelData;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.DeserializationFeature;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import ru.egor.qa.selenidetest.interfaces.JsonProcessor;
 
 import java.util.Map;
 

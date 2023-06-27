@@ -3,9 +3,9 @@ package ru.egor.qa.selenidetest.steps;
 import com.codeborne.selenide.Configuration;
 import io.cucumber.java.BeforeStep;
 import io.cucumber.java.ru.Пусть;
-import ru.egor.qa.selenidetest.model.JksonJsonProcessor;
-import ru.egor.qa.selenidetest.model.JsonProcessor;
-import ru.egor.qa.selenidetest.model.TestData;
+import ru.egor.qa.selenidetest.modelData.JksonJsonProcessor;
+import ru.egor.qa.selenidetest.interfaces.JsonProcessor;
+import ru.egor.qa.selenidetest.modelData.TestData;
 
 import java.io.IOException;
 import java.nio.file.Files;
