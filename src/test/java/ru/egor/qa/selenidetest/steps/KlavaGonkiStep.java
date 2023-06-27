@@ -1,6 +1,5 @@
 package ru.egor.qa.selenidetest.steps;
 
-import com.codeborne.selenide.WebDriverRunner;
 import io.cucumber.java.ru.И;
 import io.cucumber.java.ru.Когда;
 import io.cucumber.java.ru.Тогда;

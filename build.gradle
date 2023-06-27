@@ -14,7 +14,7 @@ def selenideVersion = '6.12.4',
     cucumberJavaVersion = '7.12.0',
     cucumberJunitVersion = '7.12.0',
     allureVersion = '2.20.1',
-    jacksonVersion = '2.14.1',
+    jacksonVersion = '2.15.2',
     assertjVersion = "3.23.1",
     aspectjVersion = "1.9.5"
 
@@ -65,11 +65,11 @@ dependencies {
     //Allure
     testImplementation(
             "io.qameta.allure:allure-cucumber7-jvm:${allureVersion}",
-            "io.qameta.allure:allure-java-commons:${allureVersion}",
-            "io.qameta.allure:allure-commandline:${allureVersion}",
-            "io.qameta.allure:allure-junit5:${allureVersion}",
-            "io.qameta.allure:allure-assertj:${allureVersion}",
-            "io.qameta.allure:allure-selenide:${allureVersion}"
+//            "io.qameta.allure:allure-java-commons:${allureVersion}",
+//            "io.qameta.allure:allure-commandline:${allureVersion}",
+//            "io.qameta.allure:allure-junit5:${allureVersion}",
+//            "io.qameta.allure:allure-assertj:${allureVersion}",
+//            "io.qameta.allure:allure-selenide:${allureVersion}"
     )
 
     //Assertj
@@ -78,13 +78,26 @@ dependencies {
             "org.aspectj:aspectjweaver:$aspectjVersion"
     )
 
+    //Log4j2
+    testImplementation(
+            'org.slf4j:slf4j-simple:2.0.7',
+            'org.apache.logging.log4j:log4j-slf4j-impl:2.20.0',
+            'org.apache.logging.log4j:log4j-jul:2.20.0'
+    )
+
+    //Jackson
+    testImplementation(
+            "com.fasterxml.jackson.core:jackson-databind:${jacksonVersion}",
+            "com.fasterxml.jackson.core:jackson-annotations:${jacksonVersion}"
+
+    )
+
     implementation(
             'org.jetbrains:annotations:24.0.1',
             'org.projectlombok:lombok:1.18.20',
             'com.google.guava:guava:30.0-jre'
     )
     testImplementation(
-            "com.fasterxml.jackson.core:jackson-databind:${jacksonVersion}",
             'com.opencsv:opencsv:5.6',
             'org.apache.poi:poi:3.17'
     )

@@ -1,0 +1,10 @@
+{
+  "SwagLab":{
+    "BaseUrl": "https://www.saucedemo.com/",
+    "Login": "standard_user",
+    "Password": "secret_sauce"
+  },
+  "UralsibBank": {
+    "BaseUrl": "https://dbo.uralsib.ru/account/login"
+  }
+}

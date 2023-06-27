@@ -6,6 +6,7 @@ import io.cucumber.datatable.DataTable;
 import org.jetbrains.annotations.NotNull;
 import org.junit.jupiter.api.Assertions;
 import org.openqa.selenium.By;
+import ru.egor.qa.selenidetest.interfaces.CommonInterfaces;
 
 import java.util.List;
 import java.util.Map;
@@ -14,19 +15,20 @@ import static com.codeborne.selenide.CollectionCondition.sizeGreaterThanOrEqual;
 import static com.codeborne.selenide.Selenide.*;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
-abstract public class UiCommonSteps implements ru.egor.qa.selenidetest.interfaces.CommonInterfaces {
+abstract public class UiCommonSteps implements CommonInterfaces {
     private String fieldValue;
 
     @Override
     public void emptyField(String value) {
-        boolean isSearchFieldEmpty;
-        if (value.contains(".") | value.contains("#")) {
-            isSearchFieldEmpty = $(value).val().isEmpty();
-        } else if (value.contains("//")) {
-            isSearchFieldEmpty = $x(value).val().isEmpty();
-        } else isSearchFieldEmpty = $(By.name(value)).val().isEmpty();
+        boolean SearchFieldEmpty;
 
-        assertTrue(isSearchFieldEmpty, "Поле поиска не пустое");
+        if (value.contains(".") | value.contains("#")) {
+            SearchFieldEmpty = $(value).val().isEmpty();
+        } else if (value.contains("//")) {
+            SearchFieldEmpty = $x(value).val().isEmpty();
+        } else SearchFieldEmpty = $(By.name(value)).val().isEmpty();
+
+        assertTrue(SearchFieldEmpty, "Поле поиска не пустое");
     }
 
     @Override
