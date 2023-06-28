@@ -11,7 +11,7 @@ import org.junit.runner.RunWith;
         },
         glue = {"ru.egor.qa.selenidetest.steps"},
         features = {"src/test/resources/feature"},
-        tags = "@HelpPage"
+        tags = "@All"
 )
 public class RunnerProjectTest {
 }

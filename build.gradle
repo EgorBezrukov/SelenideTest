@@ -88,13 +88,14 @@ dependencies {
     //Jackson
     testImplementation(
             "com.fasterxml.jackson.core:jackson-databind:${jacksonVersion}",
+            "com.fasterxml.jackson.core:jackson-core:${jacksonVersion}",
             "com.fasterxml.jackson.core:jackson-annotations:${jacksonVersion}"
 
     )
 
     implementation(
             'org.jetbrains:annotations:24.0.1',
-            'org.projectlombok:lombok:1.18.20',
+            'org.projectlombok:lombok:1.18.28',
             'com.google.guava:guava:30.0-jre'
     )
     testImplementation(

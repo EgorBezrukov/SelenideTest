@@ -31,6 +31,7 @@ public class JsonSteps {
     public void openUrlFromJson(@NotNull String value) {
         Configuration.browserSize = "1920x1080";
         Configuration.timeout = 20000;
+        Configuration.browserPosition = "0x0";
         String baseUrl = null;
         switch (value) {
             case "UralsibBank.BaseUrl" -> baseUrl = testData.getUralsibBank().getBaseUrl();
@@ -50,9 +51,11 @@ public class JsonSteps {
         assert valueField != null;
         if (fieldSelector.contains(".") | fieldSelector.contains("#")) {
             $(fieldSelector).sendKeys(valueField);
-        } else if (fieldSelector.contains("//")) {
+            return;
+        } if (fieldSelector.contains("//")) {
             $x(fieldSelector).sendKeys(valueField);
-        } else $(By.name(fieldSelector)).sendKeys(valueField);
+            return;
+        }  $(By.name(fieldSelector)).sendKeys(valueField);
     }
 
 }

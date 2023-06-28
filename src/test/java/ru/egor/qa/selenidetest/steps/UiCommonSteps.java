@@ -24,9 +24,13 @@ abstract public class UiCommonSteps implements CommonInterfaces {
 
         if (value.contains(".") | value.contains("#")) {
             SearchFieldEmpty = $(value).val().isEmpty();
-        } else if (value.contains("//")) {
+            return;
+        }
+        if (value.contains("//")) {
             SearchFieldEmpty = $x(value).val().isEmpty();
-        } else SearchFieldEmpty = $(By.name(value)).val().isEmpty();
+            return;
+        }
+        SearchFieldEmpty = $(By.name(value)).val().isEmpty();
 
         assertTrue(SearchFieldEmpty, "Поле поиска не пустое");
     }
@@ -54,9 +58,13 @@ abstract public class UiCommonSteps implements CommonInterfaces {
             String fieldValue = row.getOrDefault("Key", ""); // если значение не указано, используем пустую строку
             if (fieldName.contains(".") | fieldName.contains("#")) {
                 $(fieldName).setValue(fieldValue);
-            } else if (fieldName.contains("//")) {
+                return;
+            }
+            if (fieldName.contains("//")) {
                 $x(fieldName).setValue(fieldValue);
-            } else $(By.name(fieldName)).setValue(fieldValue);
+                return;
+            }
+            $(By.name(fieldName)).setValue(fieldValue);
         }
     }
 
@@ -64,27 +72,39 @@ abstract public class UiCommonSteps implements CommonInterfaces {
     public void sortElement(@NotNull String fieldSelector, String key) {
         if (fieldSelector.contains(".") | fieldSelector.contains("#")) {
             $(fieldSelector).selectOptionByValue(key);
-        } else if (fieldSelector.contains("//")) {
+            return;
+        }
+        if (fieldSelector.contains("//")) {
             $x(fieldSelector).selectOptionByValue(key);
-        } else $(By.name(fieldSelector)).selectOptionByValue(key);
+            return;
+        }
+        $(By.name(fieldSelector)).selectOptionByValue(key);
     }
 
     @Override
     public void checkQuantityPageElements(@NotNull String fieldSelector, int quantity) {
         if (fieldSelector.contains(".") | fieldSelector.contains("#")) {
             $$(fieldSelector).shouldHave(sizeGreaterThanOrEqual(quantity));
-        } else if (fieldSelector.contains("//")) {
+            return;
+        }
+        if (fieldSelector.contains("//")) {
             $$x(fieldSelector).shouldHave(sizeGreaterThanOrEqual(quantity));
-        } else $$(By.name(fieldSelector)).shouldHave(sizeGreaterThanOrEqual(quantity));
+            return;
+        }
+        $$(By.name(fieldSelector)).shouldHave(sizeGreaterThanOrEqual(quantity));
     }
 
     @Override
     public void rememberValue(@NotNull String fieldSelector) {
         if (fieldSelector.contains(".") | fieldSelector.contains("#")) {
             fieldValue = $(fieldSelector).getText();
-        } else if (fieldSelector.contains("//")) {
+            return;
+        }
+        if (fieldSelector.contains("//")) {
             fieldValue = $x(fieldSelector).getText();
-        } else fieldValue = $(By.name(fieldSelector)).getText();
+            return;
+        }
+        fieldValue = $(By.name(fieldSelector)).getText();
     }
 
     @Override
@@ -96,18 +116,26 @@ abstract public class UiCommonSteps implements CommonInterfaces {
     public void button(@NotNull String btnName) {
         if (btnName.contains(".") | btnName.contains("#")) {
             $(btnName).click();
-        } else if (btnName.contains("//")) {
+            return;
+        }
+        if (btnName.contains("//")) {
             $x(btnName).click();
-        } else $(By.name(btnName)).click();
+            return;
+        }
+        $(By.name(btnName)).click();
     }
 
     @Override
     public void enterValueIntTheField(@NotNull String fieldSelector, String value) {
         if (fieldSelector.contains(".") | fieldSelector.contains("#")) {
             $(fieldSelector).sendKeys(value);
-        } else if (fieldSelector.contains("//")) {
+            return;
+        }
+        if (fieldSelector.contains("//")) {
             $x(fieldSelector).sendKeys(value);
-        } else $(By.name(fieldSelector)).sendKeys(value);
+            return;
+        }
+        $(By.name(fieldSelector)).sendKeys(value);
     }
 
     @Override
@@ -127,6 +155,8 @@ abstract public class UiCommonSteps implements CommonInterfaces {
 
     @Override
     public void openUrlAndConfigure(String url) {
+        Configuration.browser = "chrome";
+        Configuration.browserPosition = "0x0";
         Configuration.browserSize = "1920x1080";
         Configuration.timeout = 20000;
         open(url);

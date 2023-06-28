@@ -1,5 +1,6 @@
 # language: ru
 
+@All
 @HelpPage
 Функционал: Страница помощь
 

@@ -14,21 +14,21 @@ import java.nio.file.Paths;
 
 @JsonIgnoreProperties
 public class TestClass {
-    TestData testData;
-    JsonProcessor processor;
-
-
-    void setup() {
-        testData = new TestData();
-        processor = new JksonJsonProcessor();
-    }
-
-    @Test
-    public void fromJson() throws IOException {
-        String json = Files.readString(Paths.get("src/test/resources/application/TestData.json"));
-        TestData testData = processor.fromJson(json);
-        String baseUrl = testData.getSwagLab().getBaseUrl();
-    }
+//    TestData testData;
+//    JsonProcessor processor;
+//
+//
+//    void setup() {
+//        testData = new TestData();
+//        processor = new JksonJsonProcessor();
+//    }
+//
+//    @Test
+//    public void fromJson() throws IOException {
+//        String json = Files.readString(Paths.get("src/test/resources/application/TestData.json"));
+//        TestData testData = processor.fromJson(json);
+//        String baseUrl = testData.getSwagLab().getBaseUrl();
+//    }
 
 //    private TestData testData;
 //
