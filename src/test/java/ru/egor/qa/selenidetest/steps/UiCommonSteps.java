@@ -8,6 +8,8 @@ import org.junit.jupiter.api.Assertions;
 import org.openqa.selenium.By;
 import ru.egor.qa.selenidetest.interfaces.CommonInterfaces;
 
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 import java.util.List;
 import java.util.Map;
 
@@ -17,6 +19,68 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 
 abstract public class UiCommonSteps implements CommonInterfaces {
     private String fieldValue;
+
+
+    public void dateFormatter(String dateFormat) {
+        DateTimeFormatter dtf = DateTimeFormatter.ofPattern(dateFormat);
+        String actualDate = dtf.format(LocalDate.now());
+    }
+
+    @Override
+    public void dateMinus(String dateFormat, int value, String time, String locator) {
+        DateTimeFormatter dtf = DateTimeFormatter.ofPattern(dateFormat);
+        String beforeDate = null;
+        switch (time) {
+            case "день", "дня", "дней" -> beforeDate = dtf.format(LocalDate.now().minusDays(value));
+            case "неделя", "недели", "недель" -> beforeDate = dtf.format(LocalDate.now().minusWeeks(value));
+            case "месяц", "месяца", "месяцев" -> beforeDate = dtf.format(LocalDate.now().minusMonths(value));
+            case "год", "года", "лет" -> beforeDate = dtf.format(LocalDate.now().minusYears(value));
+        }
+
+        if (locator.contains(".") | locator.contains("#")) {
+            $(locator).sendKeys(beforeDate);
+            return;
+        }
+        if (locator.contains("//")) {
+            $x(locator).sendKeys(beforeDate);
+            return;
+        }
+        $(By.name(locator)).sendKeys(beforeDate);
+    }
+
+    @Override
+    public void datePlus(String dateFormat, int value, String time, String locator) {
+        DateTimeFormatter dtf = DateTimeFormatter.ofPattern(dateFormat);
+        String afterDate = null;
+        switch (time) {
+            case "день", "дня", "дней" -> afterDate = dtf.format(LocalDate.now().plusDays(value));
+            case "неделя", "недели", "недель" -> afterDate = dtf.format(LocalDate.now().plusWeeks(value));
+            case "месяц", "месяца", "месяцев" -> afterDate = dtf.format(LocalDate.now().plusMonths(value));
+            case "год", "года", "лет" -> afterDate = dtf.format(LocalDate.now().plusYears(value));
+        }
+
+        if (locator.contains(".") | locator.contains("#")) {
+            $(locator).sendKeys(afterDate);
+            return;
+        }
+        if (locator.contains("//")) {
+            $x(locator).sendKeys(afterDate);
+            return;
+        }
+        $(By.name(locator)).sendKeys(afterDate);
+    }
+
+    public void cleanField(String locator) {
+        if (locator.contains(".") | locator.contains("#")) {
+            $(locator).clear();
+            return;
+        }
+        if (locator.contains("//")) {
+            $x(locator).clear();
+            return;
+        }
+        $(By.name(locator)).clear();
+    }
 
     @Override
     public void emptyField(String value) {
@@ -160,5 +224,9 @@ abstract public class UiCommonSteps implements CommonInterfaces {
         Configuration.browserSize = "1920x1080";
         Configuration.timeout = 20000;
         open(url);
+    }
+
+    public void timeout(int params) throws InterruptedException {
+        sleep(params);
     }
 }

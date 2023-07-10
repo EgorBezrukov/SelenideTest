@@ -100,4 +100,21 @@ public interface CommonInterfaces {
      * @param value селектор поля ввода
      */
     void emptyField(String value);
+
+    /**
+     *
+     * @param dateFormat формат даты
+     * @param time период времени (день, неделя, месяц, год)
+     * @param value единица времени
+     * @param locator локатор поля
+     */
+    public void dateMinus(String dateFormat, int value, String time, String locator);
+
+    /**
+     * @param dateFormat формат даты
+     * @param time период времени (день, неделя, месяц, год)
+     * @param value единица времени
+     * @param locator локатор поля
+     */
+    public void datePlus(String dateFormat, int value, String time, String locator);
 }
