@@ -3,7 +3,7 @@
 Функционал: Проверка функционала формы регистрации
 
   Предыстория: Открывается страница
-    Пусть пользователь открывает сайт "https://www.saucedemo.com/"
+    Пусть пользователь открывает страницу "https://www.saucedemo.com/"
 
   @All
   @CheckRegistrationForm
@@ -14,10 +14,10 @@
       | Field     | Key           |
       | user-name | standard_user |
       | password  | secret_sauce  |
-    И он нажимает на "login-button"
+    И он нажимает на кнопку "login-button"
 
     * h1(2. Проверка входа)
-    Тогда пользователь проверяет что адрес сайта соответствует "https://www.saucedemo.com/inventory.html"
+    Тогда пользователь проверяет что адрес страницы соответствует "https://www.saucedemo.com/inventory.html"
 
   @All
   @CheckRegistrationFormAll
@@ -28,7 +28,7 @@
       | Field     | Key |
       | user-name |     |
       | password  |     |
-    И он нажимает на "login-button"
+    И он нажимает на кнопку "login-button"
 
     * h1(2. Проверка сообщения об ошибке)
     Тогда пользователь запоминает значение поля "//h3"
@@ -43,7 +43,7 @@
       | Field     | Key     |
       | user-name | asfadsa |
       | password  | 123433  |
-    И он нажимает на "login-button"
+    И он нажимает на кнопку "login-button"
 
     * h1(2. Проверка сообщения об ошибке)
     Тогда пользователь запоминает значение поля "//h3"

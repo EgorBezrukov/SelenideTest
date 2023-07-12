@@ -15,14 +15,14 @@ public class CommonSteps extends UiCommonSteps {
      * <p>
      * Пример:
      * <pre>
-     *         Пусть пользователь открывает сайт "https://www.saucedemo.com/"
+     *         Пусть пользователь открывает страницу "https://www.saucedemo.com/"
      * </pre>
      *
      * @param url url стартовой страницы
      *            </p>
      */
 
-    @Пусть("^(?:пользователь|он)? открывает сайт \"([^\"]*)\"$")
+    @Пусть("^(?:пользователь|он)? открывает страницу \"([^\"]*)\"$")
     public void openSite(String url) {
         openUrlAndConfigure(url);
     }
@@ -32,15 +32,15 @@ public class CommonSteps extends UiCommonSteps {
      * <p>
      * Пример:
      * <pre>
-     *          И он нажимает на "login-button"
-     *          И он нажимает на "#item_4_title_link"
-     *          И он нажимает на ".shopping_cart_link"
+     *          И он нажимает на кнопку "login-button"
+     *          И он нажимает на кнопку "#item_4_title_link"
+     *          И он нажимает на кнопку ".shopping_cart_link"
      *     </pre>
      *
      * @param btnSelector передаваемое значение поля элемента
      *                    </p>
      */
-    @И("^(?:пользователь|он)? нажимает на \"([^\"]*)\"$")
+    @И("^(?:пользователь|он)? нажимает на кнопку \"([^\"]*)\"$")
     public void clickButton(String btnSelector) {
         button(btnSelector);
     }
@@ -50,13 +50,13 @@ public class CommonSteps extends UiCommonSteps {
      * <p>
      * Пример:
      * <pre>
-     *           Тогда пользователь проверяет что адрес сайта соответствует "https://www.saucedemo.com/inventory.html"
+     *           Тогда пользователь проверяет что адрес страницы соответствует "https://www.saucedemo.com/inventory.html"
      *     </pre>
      *
      * @param currentUrl передаваемое значение поля элемента
      *                   </p>
      */
-    @Тогда("^(?:пользователь|он)? проверяет что адрес сайта соответствует \"([^\"]*)\"$")
+    @Тогда("^(?:пользователь|он)? проверяет что адрес страницы соответствует \"([^\"]*)\"$")
     public void checkUrl(String currentUrl) {
         getUrlAndCheck(currentUrl);
     }
